@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+@import url('./var.css');
+@import url('https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css');
+body{
+    background-color: var(--background);
+    box-sizing: border-box;
+    z-index: 1;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    padding: 50px;
+    padding-top: 100px;
+}
+#app{
+    height: 100%;
+}
+*{
+    transition: color 0.2s, background-color 0.2s;
+    color: var(--text);
+    margin: 0px;
+}
+a{
+    font-size: 1rem;
+    color: var(--primary);
+    text-decoration-thickness: 3px;
+}
+a:hover{
+    text-decoration: none;
+}
+h1{
+    font-size: 5rem;
+}
+h2{
+    font-size: 3rem;
+}
+h3{
+    font-size: 1.5rem;
+}
+p{
+    font-weight: normal;
+    font-size: 1rem;
+}
+.light{
+    font-weight: lighter;
+}
+.generic_button{
+    color: var(--text);
+    text-decoration: none;
+    width:fit-content;
+    transition: box-shadow 0.1s, outline 0.1s;
+    padding: 10px 16px;
+    background: none;
+    outline: var(--foreground) 2px solid;
+    border: none;
+    border-radius: 50px;
+    display: flex;
+    gap: 15px;
+    cursor: pointer;
+    align-items: center;
+}
+.generic_button:hover{
+    background: var(--background);
+    outline: var(--background) 2px solid;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+}
+i{
+    font-size: 16px;
+}
+.body_top{
+    z-index: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.more_info{
+    flex: 1;
+    min-height: 0%;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+.info_wrapper{
+    box-sizing: border-box;
+    overflow: auto;
+    height: fit-content;
+    flex: 1;
+    max-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 25px;
+    background-color: var(--card);
+    border-radius: 15px;
+}
+.card_content{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.card_content i{
+    font-size: 24px;
+}

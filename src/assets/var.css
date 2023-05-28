@@ -1,0 +1,16 @@
+:root.lightmode{
+    --primary: #739AFD;
+    --secondary: #FEAD72;
+    --background: #fff;
+    --text: #000;
+    --foreground: #A2A2A2;
+    --card: #E8E8E8;
+}
+:root.darkmode{
+    --primary: #739AFD;
+    --secondary: #FEAD72;
+    --background: #252525;
+    --text: #FFF;
+    --foreground: #A2A2A2;
+    --card: #333333;
+}
