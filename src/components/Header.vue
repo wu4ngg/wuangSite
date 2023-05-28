@@ -1,11 +1,19 @@
+
 <script>
+    import Menu from './Menu.vue'
+
+
     export default{
+        components: {
+            Menu
+        },
         data(){
             return {
                 items: [],
                 isDark: false,
                 icon: document.getElementById("icon"),
-                logo: document.getElementById("logo")
+                logo: document.getElementById("logo"),
+                isMenu: false,
             }
         },
         created(){
@@ -56,6 +64,9 @@
                 res.classList.add("darkmode")
                 logo.src = '/logo_dark.svg'
                 this.isDark = true;
+            },
+            showMenu(){
+                this.isMenu = !this.isMenu;
             }
         }
         
@@ -67,7 +78,10 @@
             <img src="/logo.svg" class="logo" id="logo"/>
             <button class="generic_button" id="dark_mode" @click="darkmodetoggle()">
                 <i class="ri-moon-line" id="icon"></i>
-                <p>Dark mode</p>
+                <p id="darkmode_text">Dark mode</p>
+            </button>
+            <button class="generic_button mobile" @click="showMenu()" >
+                <i class="ri-menu-line"></i>
             </button>
         </div>
         <div class="right">
@@ -77,9 +91,23 @@
             </router-link>
         </div>
     </div>
+    <Transition name="menu">
+        <Menu v-if="isMenu" @is-menu="(n) => isMenu = n"></Menu>
+    </Transition>
 </template>
 <style>
+
     @import url("../assets/main.css");
+    .menu-enter-active,
+    .menu-leave-active{
+        transition: opacity 0.5s cubic-bezier(.48,.22,.01,1.02), transform 0.5s cubic-bezier(.48,.22,.01,1.02), filter 0.5s cubic-bezier(.48,.22,.01,1.02);
+    }
+    .menu-enter-from,
+    .menu-leave-to{
+        filter: blur(10px);
+        opacity: 0;
+        transform: translate(0, -20px);
+    }
     .header_wrapper{
         background-color: var(--background);
         width: 100%;

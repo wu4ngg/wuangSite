@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Soon from '../views/SoonView.vue'
+import ProjectView from '../views/ProjectView.vue'
 const router = createRouter({
   mode: 'history',
   history: createWebHashHistory(),
@@ -13,7 +14,7 @@ const router = createRouter({
     {
       path: '/project',
       name: 'Project',
-      component: Soon
+      component: ProjectView
     },
     {
       path: '/blog',
