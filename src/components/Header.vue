@@ -2,16 +2,30 @@
     export default{
         data(){
             return {
+                items: [],
                 isDark: false,
                 icon: document.getElementById("icon"),
                 logo: document.getElementById("logo")
             }
         },
+        created(){
+            this.$router.options.routes.forEach(route => {
+                this.items.push({
+                    name: route.name,
+                    path: route.path
+                })
+            })
+        },
         mounted(){
             var root = document.querySelector(":root")
             let mode = localStorage.getItem("mode")
-            mode == "light" ? this.isDark = false : this.isDark = true
+            if(!mode){
+                this.styleLight(root)
+                return;
+            }
+            mode == "dark" ? this.isDark = true : this.isDark = false
             this.isDark ? this.styleDark(root) : this.styleLight(root)
+
         },  
         methods:{
             darkmodetoggle(){
@@ -57,8 +71,10 @@
             </button>
         </div>
         <div class="right">
-            <router-link to="/" class="link_entry">Home</router-link>
-            <router-link to="/project" class="link_entry">Projects</router-link>
+            <router-link v-for="route in items" :to="route.path" class="link_entry">
+                <p>{{ route.name }}</p>
+                <div :class="this.$route.name == route.name ? 'indicator active' : 'indicator'"></div>
+            </router-link>
         </div>
     </div>
 </template>
@@ -86,16 +102,29 @@
         gap: 30px;
     }
     .link_entry{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         color: var(--text);
         text-decoration: none;
     }
-    .link_entry:hover{
-        text-decoration:underline;
-        text-decoration-color: var(--text);
-        text-decoration-thickness: 2px;
+    .link_entry:hover .indicator{
+        width: 100%;
+    }
+    .link_entry:active .indicator{
+        width: 75%;
+    }
+    .indicator{
+        transition: width 0.2s;
+        width: 0;
+        border-bottom: 5px var(--primary) solid;
+    }
+    .active{
+        width: 100%;
     }
     .right{
         display: flex;
-        gap: 15px;
+        gap: 25px;
     }
 </style>
