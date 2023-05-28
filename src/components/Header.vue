@@ -40,7 +40,7 @@
             styleLight(res){
                 localStorage.setItem("mode", "light")
                 console.log("light")
-                logo.src = '../../public/logo.svg'
+                logo.src = '/logo.svg'
                 icon.classList.add("ri-moon-line")
                 icon.classList.remove("ri-sun-line")
                 res.classList.remove("darkmode")
@@ -54,7 +54,7 @@
                 icon.classList.add("ri-sun-line")
                 res.classList.remove("lightmode")
                 res.classList.add("darkmode")
-                logo.src = '../../public/logo_dark.svg'
+                logo.src = '/logo_dark.svg'
                 this.isDark = true;
             }
         }
@@ -64,7 +64,7 @@
 <template>
     <div class="header_wrapper">
         <div class="left">
-            <img src="../../public/logo.svg" class="logo" id="logo"/>
+            <img src="/logo.svg" class="logo" id="logo"/>
             <button class="generic_button" id="dark_mode" @click="darkmodetoggle()">
                 <i class="ri-moon-line" id="icon"></i>
                 <p>Dark mode</p>
