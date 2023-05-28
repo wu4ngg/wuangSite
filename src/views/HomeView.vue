@@ -13,11 +13,11 @@
         new Desc("Interests: UI Design, Front-end development. I also like to learn new JS Frameworks.", "ri-thumb-up-line")
     ]
     let p = [
-        new Project('../../public/logo.svg', "Test", "Test"),
-        new Project('../../public/logo.svg', "Test", "Test"),
-        new Project('../../public/logo.svg', "Test", "Test"),
-        new Project('../../public/logo.svg', "Test", "Test"),
-        new Project('../../public/logo.svg', "Test", "Test")
+        new Project('/logo.svg', "Test", "Test"),
+        new Project('/logo.svg', "Test", "Test"),
+        new Project('/logo.svg', "Test", "Test"),
+        new Project('/logo.svg', "Test", "Test"),
+        new Project('/logo.svg', "Test", "Test")
     ]
     export default {
         
@@ -51,12 +51,13 @@
                 </div>
             </div>
             <div class="more_info">
-                <MoreInfo :list=this.list title="About me"></MoreInfo>
-                <MoreInfo mode="project" :list=this.proj title="Projects" subtitle="Here are some of my best projects. Click on one to go to its project page."></MoreInfo>
+                <MoreInfo :list=list title="About me"></MoreInfo>
+                <MoreInfo mode="project" :list=proj title="Projects" subtitle="Here are some of my best projects. Click on one to go to its project page."></MoreInfo>
             </div>
-            
         </div>
-       
+        <div class="footer">
+
+        </div>
         
     
 </template>

@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Soon from '../views/SoonView.vue'
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  mode: 'history',
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',

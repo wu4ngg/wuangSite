@@ -4,12 +4,7 @@ import Header from './components/Header.vue'
 </script>
 <template>
   <Header></Header>
-  
-    <RouterView v-slot="{Component}">
-      <Transition mode="out-in" name="page">
-        <component :is="Component"/>
-      </Transition>
-    </RouterView>
+    <RouterView/>
 </template>
 <style>
   @keyframes fadeout{
