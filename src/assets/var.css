@@ -5,10 +5,12 @@
     --text: #000;
     --foreground: #A2A2A2;
     --card: #E8E8E8;
+    --on-color: #000;
 }
 :root.darkmode{
-    --primary: #739AFD;
-    --secondary: #FEAD72;
+    --on-color: #000;
+    --primary: #9cb6f8;
+    --secondary: #fac9a6;
     --background: #252525;
     --text: #FFF;
     --foreground: #A2A2A2;

@@ -9,11 +9,12 @@
         },
         created(){
             this.$router.options.routes.forEach(route => {
-                this.items.push({
-                    name: route.name,
-                    path: route.path,
-                    
-                })
+                if(route.name != 'Ignore'){
+                    this.items.push({
+                        name: route.name,
+                        path: route.path
+                    })
+                }
             })
         },
         methods:{

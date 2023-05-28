@@ -2,7 +2,9 @@ class Project{
     icon
     desc
     name
-    constructor(icon, desc, name){
+    id
+    constructor(icon, desc, name, id){
+        this.id = id;
         this.icon = icon;
         this.desc = desc;
         this.name = name;
@@ -24,6 +26,9 @@ class Project{
     }
     setName(name){
         this.name = name;
+    }
+    getId(){
+        return this.id;
     }
 }
 export default Project;

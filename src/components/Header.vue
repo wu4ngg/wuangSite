@@ -18,10 +18,12 @@
         },
         created(){
             this.$router.options.routes.forEach(route => {
-                this.items.push({
-                    name: route.name,
-                    path: route.path
-                })
+                if(route.name != 'Ignore' && route.name){
+                    this.items.push({
+                        name: route.name,
+                        path: route.path
+                    })
+                }
             })
         },
         mounted(){
@@ -85,7 +87,7 @@
             </button>
         </div>
         <div class="right">
-            <router-link v-for="route in items" :to="route.path" class="link_entry">
+            <router-link  v-for="route in items" :to="route.path" class="link_entry">
                 <p>{{ route.name }}</p>
                 <div :class="this.$route.name == route.name ? 'indicator active' : 'indicator'"></div>
             </router-link>

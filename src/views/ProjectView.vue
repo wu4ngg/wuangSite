@@ -1,27 +1,45 @@
 
 <script>
+    import { collection, query, where, getDocs } from 'firebase/firestore'
+    import { db } from '../../database/helper'
     import Title from '../components/Title.vue'
     import ProjectCard from '../components/ProjectCard.vue'
     import Project from '../model/project'
-    let p = [
-        new Project('/logo.svg', "Test", "Test"),
-        new Project('/logo.svg', "Test", "Test"),
-    ]
+    
     export default{
         components:{
             Title,
             ProjectCard
         },
+        methods: {
+            async getData(db){
+                var l = []
+                const col = collection(db, 'projects')
+                const q = query(col, where('isfeatured', '==', true))
+                const snap = await getDocs(q)
+                const list = snap.docs.map(doc => doc.data())
+                const idList = snap.docs.map(doc => doc.id)
+                list.forEach((e, index) => {
+                    l.push(new Project(e.image, e.desc, e.name, idList[index]))
+                })
+                console.log(list)
+                return l
+        },
+        },
+        created(){
+            var real;
+            var res = this.getData(db)
+        },
         data(){
             return {
-                list: p
+                list: this.getData(db).then((e) => {this.list = e})
             }
         }
     }
 </script>
 <template>
     <div class="project_wrapper">
-        <Title color="#FEAD72" desc="Here are some of my projects that I did during college." :text="this.$route.name"></Title>
+        <Title color="#FEAD72" desc="Some project that I made in my free time" :text="this.$route.name"></Title>
         <div class="project_content">
             <div class="project_cards">
                 <ProjectCard v-for="item in list" :object="item"/>

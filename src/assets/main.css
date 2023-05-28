@@ -30,7 +30,7 @@ h1{
     font-size: 5rem;
 }
 h2{
-    font-size: 3rem;
+    font-size: 2rem;
 }
 h3{
     font-size: 1.5rem;
@@ -131,6 +131,9 @@ i{
     text-decoration: none;
     padding: 15px 55px;
     background-color: var(--secondary);
+}
+.more_btn p, .more_btn i{
+    color: var(--on-color);
 }
 .more_btn i{
     font-size: 20px;

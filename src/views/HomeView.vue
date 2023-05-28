@@ -5,6 +5,7 @@
     import Project from '../model/project'
     import { db } from '../../database/helper'
     import {collection, getDocs} from 'firebase/firestore'
+    import {getFeaturedProjects} from '../../database/helper'
 </script>
 <script>
     let d = []
@@ -55,12 +56,10 @@
     console.log(d)
     console.log(d)
     export default {
-        created(){
-        },
         data(){
             return {
                 list: d,
-                proj: p
+                proj: getFeaturedProjects().then((e) => {this.proj = e})
             }
         }
     }
