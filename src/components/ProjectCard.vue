@@ -1,12 +1,18 @@
 <script>
     export default{
         props:[
-            "object"
+            "object",
+            "customlink"
         ]
     }
 </script>
 <template>
-    <router-link :to="'/projects/'+object.getId()" class="project_card">
+    <a v-if="customlink" :href="customlink" class="project_card">
+        <img :src="object.getIcon()"/>
+        <h3>{{ object.getName() }}</h3>
+        <p>{{ object.getDesc() }}</p>
+    </a>
+    <router-link v-if="!customlink" :to="'/projects/'+object.getId()" class="project_card">
         <img :src="object.getIcon()"/>
         <h3>{{ object.getName() }}</h3>
         <p>{{ object.getDesc() }}</p>

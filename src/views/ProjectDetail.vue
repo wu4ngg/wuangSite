@@ -3,12 +3,14 @@
     import Title from '../components/Title.vue'
     import Desc from '../model/desc'
     import MoreInfo from '../components/Card.vue'
+    import Footer from '../components/Footer.vue'
     var d = await getSingleProject("0gV2wAXOaCq89vnZ5vHG")
 
     export default{
         components:{
             Title,
-            MoreInfo
+            MoreInfo,
+            Footer
         },
         data(){
             return {
@@ -67,7 +69,18 @@
                <MoreInfo :list="more_info" title="Project Information"></MoreInfo> 
                <MoreInfo :list="credits" title="Credits" :subtitle="`People who worked on this project`"/>
             </div>
+            <h2 class="light">DEV LOG</h2>
+            <div class="coming_soon">
+                <i class="ri-code-line"></i>
+                <div>
+                    <h2>Coming soon™.</h2>
+                    <p>This section will be ready once the Blog page is completed.</p>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="footer_wrapper">
+        <Footer></Footer>
     </div>
 </template>
 <style scoped>

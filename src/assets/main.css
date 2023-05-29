@@ -152,6 +152,28 @@ i{
     gap: 25px;
     justify-content: center;
 }
+.coming_soon{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.coming_soon i{
+    font-size: 55px;
+}
+.footer_wrapper{
+    padding: 50px;
+}
+.bold{
+    font-weight: bold;
+}
+.description_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    background-color: var(--background);
+    padding: 20px;
+}
 progress {
     width: 1.5em;
     height: 1.5em;
@@ -215,5 +237,8 @@ progress {
         box-shadow: none !important;
         scroll-snap-align: start !important;
         width: auto !important;
+    }
+    .footer_wrapper{
+        padding: 25px;
     }
 }

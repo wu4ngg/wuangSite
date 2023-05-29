@@ -3,6 +3,7 @@
     import Desc from '../model/desc'
     import MoreInfo from '../components/Card.vue'
     import Project from '../model/project'
+    import Footer from '../components/Footer.vue'
     import { db } from '../../database/helper'
     import {collection, getDocs} from 'firebase/firestore'
     import {getFeaturedProjects} from '../../database/helper'
@@ -90,8 +91,9 @@
                     <MoreInfo mode="project" :list=proj title="Projects" subtitle="Here are some of my best projects. Click on one to go to its project page."></MoreInfo>
                 </div>
             </div>
-            <div class="footer">
-
-            </div>
-        </div> 
+            
+        </div>
+        <div class="footer_wrapper">
+            <Footer></Footer>
+        </div>
 </template>

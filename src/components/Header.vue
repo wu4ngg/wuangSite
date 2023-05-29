@@ -77,7 +77,10 @@
 <template>
     <div class="header_wrapper">
         <div class="left">
-            <img src="/logo.svg" class="logo" id="logo"/>
+            <router-link to="/">
+                <p></p>
+                <img src="/logo.svg" class="logo" id="logo"/>
+            </router-link>
             <button class="generic_button" id="dark_mode" @click="darkmodetoggle()">
                 <i class="ri-moon-line" id="icon"></i>
                 <p id="darkmode_text">Dark mode</p>
@@ -85,7 +88,7 @@
             <button class="generic_button mobile" @click="showMenu()" >
                 <i class="ri-menu-line"></i>
             </button>
-            <h3 class="desktop">{{ this.$route.name }}</h3>
+            <h3 class="desktop">{{ this.$route.path }}</h3>
         </div>
         <div class="right">
             <router-link  v-for="route in items" :to="route.path" class="link_entry">

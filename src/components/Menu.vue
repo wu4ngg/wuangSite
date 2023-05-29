@@ -31,7 +31,9 @@
             <router-link v-for="route in items" :to="route.path" :class="this.$route.name != route.name ? 'link_entry' : 'link_entry selected'" @click="closeMenu()">
                 <p>{{ route.name }}</p>
             </router-link>
-            <button class="link_entry" @click="closeMenu()">Close</button>
+            <button class="link_entry" @click="closeMenu()">
+                <p>Close</p>
+            </button>
         </div>
     </div>
 </template>
@@ -58,6 +60,8 @@
         border-radius: 16px;
     }
     .link_entry{
+
+        font-family: 'Inter', sans-serif;
         font-weight: bold;
         background-color: var(--background);
         border: none;
