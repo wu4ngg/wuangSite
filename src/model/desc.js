@@ -1,9 +1,11 @@
 class desc{
     description;
     icon;
-    constructor(desc, icon){
+    link;
+    constructor(desc, icon, link){
         this.description = desc
         this.icon = icon
+        this.link = link
     }
     getDescription() {
         return this.description
@@ -17,6 +19,9 @@ class desc{
     }
     setIcon(icon){
         this.icon = icon;
+    }
+    getLink(){
+        return this.link
     }
 }
 export default desc;

@@ -9,7 +9,7 @@
         },
         created(){
             this.$router.options.routes.forEach(route => {
-                if(route.name != 'Ignore'){
+                if(route.name != 'Ignore' && route.name != 'Project Detail'){
                     this.items.push({
                         name: route.name,
                         path: route.path
@@ -31,12 +31,14 @@
             <router-link v-for="route in items" :to="route.path" :class="this.$route.name != route.name ? 'link_entry' : 'link_entry selected'" @click="closeMenu()">
                 <p>{{ route.name }}</p>
             </router-link>
+            <button class="link_entry" @click="closeMenu()">Close</button>
         </div>
     </div>
 </template>
 <style>
     @import url("../assets/main.css");
     .menu_wrapper{
+        top: 85px;
         left: 0;
         position: fixed;
         box-sizing: border-box;
@@ -56,6 +58,10 @@
         border-radius: 16px;
     }
     .link_entry{
+        font-weight: bold;
+        background-color: var(--background);
+        border: none;
+        font-size: 1rem;
         justify-content:flex-start;
         border-radius: 16px;
         padding: 10px;

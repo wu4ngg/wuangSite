@@ -30,6 +30,7 @@ const router = createRouter({
     },
     {
       path: '/projects/:id',
+      name: 'Project Detail',
       component: ProjectDetail
     }
   ]

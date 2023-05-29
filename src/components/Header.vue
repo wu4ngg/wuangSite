@@ -1,7 +1,7 @@
 
 <script>
     import Menu from './Menu.vue'
-
+    import vClickOutside from 'v-click-outside'
 
     export default{
         components: {
@@ -18,7 +18,7 @@
         },
         created(){
             this.$router.options.routes.forEach(route => {
-                if(route.name != 'Ignore' && route.name){
+                if(route.name != 'Ignore' && route.name && route.name != "Project Detail"){
                     this.items.push({
                         name: route.name,
                         path: route.path
@@ -85,6 +85,7 @@
             <button class="generic_button mobile" @click="showMenu()" >
                 <i class="ri-menu-line"></i>
             </button>
+            <h3 class="desktop">{{ this.$route.name }}</h3>
         </div>
         <div class="right">
             <router-link  v-for="route in items" :to="route.path" class="link_entry">

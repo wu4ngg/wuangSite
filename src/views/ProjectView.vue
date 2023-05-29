@@ -42,6 +42,10 @@
         <Title color="#FEAD72" desc="Some project that I made in my free time" :text="this.$route.name"></Title>
         <div class="project_content">
             <div class="project_cards">
+                <div class="loading_wrapper" v-if="!list.length">
+                    <progress class="large" ></progress>
+                    <p>Loading, please wait</p>
+                </div>
                 <ProjectCard v-for="item in list" :object="item"/>
             </div>
             <router-link to="/project" class="more_btn">

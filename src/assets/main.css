@@ -138,16 +138,44 @@ i{
 .more_btn i{
     font-size: 20px;
 }
+.large{
+    width: 3em;
+    height: 3em;
+}
+.loading_wrapper{
+    padding: 10px;
+    background-color: var(--card);
+    border-radius: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    justify-content: center;
+}
+progress {
+    width: 1.5em;
+    height: 1.5em;
+    background: url("data:image/svg+xml,%3csvg viewBox='-5 -5 10 10' xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3esvg%7banimation:r 1.4s linear infinite%7d%40keyframes r%7bto%7btransform:rotate(270deg)%7d%7dcircle%7banimation:d 1.4s ease-in-out infinite%7d%40keyframes d%7b50%25%7btransform:rotate(135deg)%3bstroke-dashoffset:8%7dto%7btransform:rotate(450deg)%7dfrom%2cto%7bstroke-dashoffset:28%7d%7d%3c/style%3e%3ccircle fill='none' stroke-dasharray='30' stroke-dashoffset='8' stroke='%234285f4' r='4'/%3e%3c/svg%3e"); 
+  }
+  
+  /* Remove default browser styles */
+  progress { border: 0 }
+  progress::-moz-progress-bar { background: none }
+  progress::-webkit-progress-bar { display: none }
+  progress::-ms-fill { animation-name: none }
 @media only screen and (max-width: 600px) {
     h1{
         font-size: 1.75rem;
+    }
+    h2{
+        font-size: 1.5rem;
     }
     .body_wrapper{
         padding: 25px;
         padding-top: 100px;
     }
     .light{
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
     .more_info{
         flex-direction: column;
@@ -164,5 +192,28 @@ i{
     }
     .mobile{
         display: flex;
+    }
+    .desktop{
+        display: none;
+    }
+    .project_content{
+        padding: 20px;
+    }
+    .page_wrapper{
+        border-radius: 16px;
+    }
+    .description_wrapper img{
+        width: 100% !important;
+        height: auto !important;
+    }
+    .project_cards{
+        justify-content: flex-start;
+        overflow: auto;
+        scroll-snap-type: x mandatory;
+    }
+    .project_card{
+        box-shadow: none !important;
+        scroll-snap-align: start !important;
+        width: auto !important;
     }
 }
