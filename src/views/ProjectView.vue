@@ -1,6 +1,6 @@
 
 <script>
-    import { collection, query, where, getDocs } from 'firebase/firestore'
+    import { collection, query, where, getDocs, getDoc } from 'firebase/firestore'
     import { db } from '../../database/helper'
     import Title from '../components/Title.vue'
     import ProjectCard from '../components/ProjectCard.vue'
@@ -25,6 +25,21 @@
                 console.log(list)
                 return l
         },
+            async getAllData(db){
+                var l = []
+                var col = collection(db, 'projects')
+                const snap = await getDocs(col)
+                const list = snap.docs.map(doc => doc.data())
+                const idList = snap.docs.map(doc => doc.id)
+                list.forEach((e, index) => {
+                    l.push(new Project(e.image, e.desc, e.name, idList[index]))
+                })
+                console.log(list)
+                return l
+            },
+            showMore(){
+                this.getAllData(db).then(e => {this.list = e})
+            }
         },
         created(){
             var real;
@@ -48,10 +63,10 @@
                 </div>
                 <ProjectCard v-for="item in list" :object="item"/>
             </div>
-            <router-link to="/project" class="more_btn">
+            <div @click="showMore()" to="/project" class="more_btn">
                 <p>See more projects</p>
                 <i class="ri-arrow-right-line"></i>
-            </router-link>
+            </div>
             <p>
                 I did a lot of projects during college and the numbers of projects is expected to grow more overtime, from simple mobile apps to compex systems.
                 <br/>

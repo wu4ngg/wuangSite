@@ -27,6 +27,7 @@
         border-radius: 20px;
         width: 100%;
         padding: 35px;
+        box-sizing: border-box;
         background-color: var(--background);
         box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.25);
     }

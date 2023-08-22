@@ -6,6 +6,8 @@ import NotFound from '../views/NotFound.vue'
 import ProjectDetail from '../views/ProjectDetail.vue'
 import AboutView from '../views/AboutView.vue'
 import CreditsView from '../views/CreditsView.vue'
+import Test from '../views/Test.vue'
+import Login from '../views/AdminLogin.vue'
 const router = createRouter({
   mode: 'history',
   history: createWebHashHistory(),
@@ -43,6 +45,16 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'Ignore',
       component: NotFound
+    },
+    {
+      path: '/test',
+      name: 'Ignore',
+      component: Test,
+    },
+    {
+      path: '/admin',
+      name: 'Ignore',
+      component: Login,
     }
   ]
 })

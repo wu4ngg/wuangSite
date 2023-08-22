@@ -6,8 +6,10 @@
     --foreground: #A2A2A2;
     --card: #E8E8E8;
     --on-color: #000;
+    --on-bright-color: #fff;
 }
 :root.darkmode{
+    --on-bright-color: #000;
     --on-color: #000;
     --primary: #9cb6f8;
     --secondary: #fac9a6;

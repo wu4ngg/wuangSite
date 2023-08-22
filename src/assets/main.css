@@ -101,6 +101,7 @@ i{
 .card_content i{
     font-size: 24px;
 }
+
 .mobile{
     display: none;
 }
@@ -112,7 +113,9 @@ i{
     height: 100%;
 }
 .project_cards{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 25px;
     gap: 25px;
     justify-content: space-between;
 }
@@ -122,6 +125,7 @@ i{
     gap: 25px;
     margin-top: -50px;
     padding: 0px 50px;
+
 }
 .more_btn{
     border-radius: 35px;
