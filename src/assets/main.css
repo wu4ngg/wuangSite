@@ -164,6 +164,12 @@ i{
 .coming_soon i{
     font-size: 55px;
 }
+.soon_wrapper{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .footer_wrapper{
     padding: 50px;
 }

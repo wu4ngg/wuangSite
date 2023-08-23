@@ -2,7 +2,8 @@
 <script>
     import Menu from './Menu.vue'
     import vClickOutside from 'v-click-outside'
-
+    import { auth, GetInfo } from '../../database/helper'
+import { onAuthStateChanged } from 'firebase/auth'
     export default{
         components: {
             Menu
@@ -14,19 +15,25 @@
                 icon: document.getElementById("icon"),
                 logo: document.getElementById("logo"),
                 isMenu: false,
+                user: auth.currentUser,
+                l: [],
             }
         },
         created(){
             this.$router.options.routes.forEach(route => {
-                if(route.name != 'Ignore' && route.name && route.name != "Project Detail"){
+                if(route.name != 'Ignore' && route.name && route.name != 'Admin' && route.name != "Project Detail"){
                     this.items.push({
                         name: route.name,
                         path: route.path
                     })
                 }
             })
+            
         },
         mounted(){
+            onAuthStateChanged(auth, (u) => {
+                this.user = u
+            })
             var root = document.querySelector(":root")
             let mode = localStorage.getItem("mode")
             if(!mode){
@@ -94,6 +101,10 @@
             <router-link  v-for="route in items" :to="route.path" class="link_entry">
                 <p>{{ route.name }}</p>
                 <div :class="this.$route.name == route.name ? 'indicator active' : 'indicator'"></div>
+            </router-link>
+            <router-link v-if="user" to="/admin/home" class="link_entry">
+                <p>Dashboard</p>
+                <div :class="this.$route.name == 'Admin' ? 'indicator active' : 'indicator'"></div>
             </router-link>
         </div>
     </div>

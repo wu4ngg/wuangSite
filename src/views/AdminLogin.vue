@@ -1,6 +1,34 @@
 <script>
+    import { login, auth } from '../../database/helper';
     export default {
-
+        data(){
+            return {
+                email: "",
+                password: ""
+            }
+        },
+        mounted(){
+            if(auth.currentUser){
+                this.$router.push('/admin/home')
+            }
+        },
+        methods: {
+            login(){
+                const mail = this.email
+                const pass = this.password
+                login({
+                    email: mail,
+                    password: pass
+                }).then((e) => {
+                    console.log(e)
+                    this.$router.push('/admin/home')
+                    this.$emit('toast', {message: 'Login successful!', type: 0})
+                }).catch((error) => {
+                    this.$emit('toast', {message: `Login failed: ${error.message}!`, type: 1})
+                    console.log(`Error, ${error.message}`)
+                })
+            }
+        }
     }
 </script>
 <template>
@@ -8,9 +36,9 @@
         <div class="left">
             <h1>Admin login</h1>
             <div class="login_wrapper">
-                <input class="login_edt" placeholder="Email"/>
-                <input class="login_edt" placeholder="Password"/>
-                <button class="login_btn">Login</button>
+                <input v-model="email" class="login_edt" placeholder="Email"/>
+                <input v-model="password" class="login_edt" type="password" placeholder="Password"/>
+                <button class="login_btn" @click="login()">Login</button>
             </div>
         </div>
         <div class="right">

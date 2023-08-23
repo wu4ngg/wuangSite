@@ -7,12 +7,13 @@
             <p>Return <a href="/">home</a></p>
         </div>
     </div>
+    
 </template>
 <style>
     .soon_wrapper{
         box-sizing: border-box;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;

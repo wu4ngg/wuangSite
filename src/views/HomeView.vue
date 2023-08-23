@@ -38,7 +38,7 @@
                 case "goal":
                     return "Goal: " + value;
                 default:
-                    return "Interests" + value;
+                    return "Interests: " + value;
             }
     }
     async function GetInfo(db){

@@ -8,6 +8,8 @@ import AboutView from '../views/AboutView.vue'
 import CreditsView from '../views/CreditsView.vue'
 import Test from '../views/Test.vue'
 import Login from '../views/AdminLogin.vue'
+import AdminHome from '../views/AdminHome.vue'
+import Permitted from '../views/Permitted.vue'
 const router = createRouter({
   mode: 'history',
   history: createWebHashHistory(),
@@ -55,6 +57,15 @@ const router = createRouter({
       path: '/admin',
       name: 'Ignore',
       component: Login,
+    },
+    {
+      path: '/admin/home',
+      name: 'Admin',
+      component: AdminHome
+    },
+    {
+      path: '/unauthorized',
+      component: Permitted
     }
   ]
 })
