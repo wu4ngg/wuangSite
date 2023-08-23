@@ -17,16 +17,16 @@ import Toast from './components/Toast.vue'
         toastType: -1,
       }
     },
-    watch: {
-      routeName(){
-        console.log('Changed')
-        if(this.routeName != 'Admin'){
-          this.sidebarWidth = 0
-        }
-      }
-    },
+    
     mounted(){
       console.log(auth.currentUser)
+    },
+    methods: {
+      checkAdmin(name){
+                
+                var namearr = name.split(' ')
+                return namearr[0] == 'Admin'
+            },
     }
   }
 </script>
@@ -36,7 +36,7 @@ import Toast from './components/Toast.vue'
   </Transition>
   <Header></Header>
   <Transition name="sidebar">
-    <Sidebar @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}" v-if="$route.name == 'Admin'" class="content_wrapper" ref="sidebar" @sidebar="e => { if(auth.currentUser && $route.name == 'Admin'){sidebarWidth = 20; console.log(e)}else{sidebarWidth = 0}}"/>
+    <Sidebar @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}" v-if="checkAdmin($route.name)" class="content_wrapper" ref="sidebar" @sidebar="e => { if(auth.currentUser && $route.name == 'Admin'){sidebarWidth = 20; console.log(e)}else{sidebarWidth = 0}}"/>
   </Transition>
     <div class="div_wrap" :style="{'padding-left': sidebarWidth + '%'}">
       <RouterView @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}"/>

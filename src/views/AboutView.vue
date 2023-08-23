@@ -1,6 +1,7 @@
 <script setup>
     import Title from '../components/Title.vue'
     import Footer from '../components/Footer.vue'
+    document.title = 'About me'
 </script>
 <template>
     <Title text="About me" color="#72B2FE"></Title>

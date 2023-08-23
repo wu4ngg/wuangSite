@@ -5,6 +5,7 @@
             const width = this.$refs.sidebar.offsetWidth
             console.log(width)
             this.$emit('sidebar', width)
+            
         },
         unmounted(){
             this.$emit('sidebar', 0)
@@ -36,16 +37,16 @@
     <div class="sidebar_wrapper" ref="sidebar">
         <div class="route_wrapper">
 
-            <router-link to="" :class="checkRoute('/admin/home') ? 'home_entry active' : 'home_entry'">
+            <router-link to="/admin/home" :class="checkRoute('/admin/home') ? 'home_entry active' : 'home_entry'">
                 <i class="ri-shield-line"></i>
                 <p>Dashboard</p>
             </router-link>
             <div class="other_routes">
-                <router-link to="" :class="checkRoute('/admin/blogs') ? 'home_entry active' : 'home_entry'">
+                <router-link to="/admin/blogs" :class="checkRoute('/admin/blogs') ? 'home_entry active' : 'home_entry'">
                     <i class="ri-article-line"></i>
                     <p>Blogs</p>
                 </router-link>
-                <router-link to="" :class="checkRoute('/admin/proj') ? 'home_entry active' : 'home_entry'">
+                <router-link to="/admin/proj" :class="checkRoute('/admin/proj') ? 'home_entry active' : 'home_entry'">
                     <i class="ri-code-line"></i>
                     <p>Projects</p>
                 </router-link>

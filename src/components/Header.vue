@@ -21,7 +21,7 @@ import { onAuthStateChanged } from 'firebase/auth'
         },
         created(){
             this.$router.options.routes.forEach(route => {
-                if(route.name != 'Ignore' && route.name && route.name != 'Admin' && route.name != "Project Detail"){
+                if(route.name != 'Ignore' && route.name && !this.checkAdmin(route.name) && route.name != "Project Detail"){
                     this.items.push({
                         name: route.name,
                         path: route.path
@@ -53,6 +53,11 @@ import { onAuthStateChanged } from 'firebase/auth'
             } else {
                 this.styleDark(root)
             }
+            },
+            checkAdmin(name){
+                
+                var namearr = name.split(' ')
+                return namearr[0] == 'Admin'
             },
             styleLight(res){
                 localStorage.setItem("mode", "light")
@@ -104,7 +109,7 @@ import { onAuthStateChanged } from 'firebase/auth'
             </router-link>
             <router-link v-if="user" to="/admin/home" class="link_entry">
                 <p>Dashboard</p>
-                <div :class="this.$route.name == 'Admin' ? 'indicator active' : 'indicator'"></div>
+                <div :class="checkAdmin($route.name) ? 'indicator active' : 'indicator'"></div>
             </router-link>
         </div>
     </div>

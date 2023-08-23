@@ -119,7 +119,7 @@ function getType(type, value){
             case "edu":
                 return value;
             case "eng":
-                return "IELTS Band " + value;
+                return "IELTS Band: " + value;
             case "goal":
                 return "Goal: " + value;
             default:
@@ -153,8 +153,11 @@ export async function GetInfo(){
 export async function updateInfo(arr){
     for await (var i of arr){
         console.log(i.id)
-        await setDoc(doc(db, 'info', i.id), {
-            value: i.editable
-        })
+        if(i.id != ''){
+            await setDoc(doc(db, 'info', i.id), {
+                value: i.editable
+            })
+        }
+        
     }
 }

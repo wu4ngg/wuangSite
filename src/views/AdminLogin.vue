@@ -10,7 +10,9 @@
         mounted(){
             if(auth.currentUser){
                 this.$router.push('/admin/home')
+                this.$emit('toast', {message: 'You are already registered.', type: 0})
             }
+            document.title = 'Login'
         },
         methods: {
             login(){

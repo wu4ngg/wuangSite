@@ -23,6 +23,7 @@
                 }).catch(e => {
                     this.$emit('toast', {message: `Error: ${e.message}`, type: 1})
                 })
+                document.title = 'Admin Home'
             }
         },
         methods: {
