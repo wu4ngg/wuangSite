@@ -1,11 +1,11 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { getFirestore, collection, getDocs, query, where, getDoc, doc, setDoc } from 'firebase/firestore'
+import { getFirestore, getDocs, query, where, getDoc, setDoc, addDoc, deleteDoc, doc, collection } from 'firebase/firestore'
 import Project from '../src/model/project'
 import Desc from '../src/model/desc'
 import User from '../src/model/user'
-
+import { getStorage, ref, getDownloadURL, uploadString, uploadBytesResumable, deleteObject } from 'firebase/storage'
 export const firebaseApp = initializeApp({
     apiKey: "AIzaSyAhhsiDOMxInV6W4UzW9L37095VwrNtQxg",
 
@@ -38,7 +38,7 @@ export async function getProjects() {
 export async function getFeaturedProjects(){
     var l = []
     const col = collection(db, 'projects')
-    const q = query(col, where('isfeatured', '==', true))
+    const q = query(col, where('isFeatured', '==', true))
     const snap = await getDocs(q)
     const list = snap.docs.map(doc => doc.data())
     const idList = snap.docs.map(doc => doc.id)
@@ -111,6 +111,20 @@ export async function getUsers(){
     res = snap.docs.map(e => e.data())
     return res;
 }
+export async function getUsersWithId(){
+    let res = []
+    const col = collection(db, 'users')
+    const snap = await getDocs(col)
+    snap.forEach((e) => {
+        res.push({
+            id: e.id,
+            fullname: e.data().fullname,
+            github: e.data().github,
+            nickname: e.data().nickname
+        })
+    })
+    return res
+}
 export async function logOut(){
     return await signOut(auth)
 }
@@ -160,4 +174,61 @@ export async function updateInfo(arr){
         }
         
     }
+}
+export const storage = getStorage()
+export async function uploadFile(url, callback, complete_callback){
+    var dl_url;
+    var date = new Date()
+    
+    var name = date.getTime()
+    var filename = url.name.split('.')
+    var extension = "." + filename[filename.length - 1]
+    console.log(extension)
+    name = name + extension
+    const sto = ref(storage, 'images/'+String(name))
+    const task = uploadBytesResumable(sto, url)
+    const res = await task.on('state_changed', callback, e => {
+        console.log('error')
+    }, () => {
+        getDownloadURL(task.snapshot.ref).then(e => {
+            console.log('Completed with url: ' + e)
+            dl_url = e
+            return dl_url
+        })
+    })
+    
+    return task
+}
+export async function uploadLang(obj){
+    var col = collection(db, 'prog_languages')
+    return await addDoc(col, obj)
+}
+export async function getLang(type){
+    var l = []
+    var col = collection(db, 'prog_languages')
+    var snap = await getDocs(col)
+    snap.forEach(e => {
+        l.push({
+            id: e.id,
+            img: e.data().img,
+            name: e.data().name,
+            type: e.data().type,
+            file_name: e.data().file_name,
+            isBeingDeleted: false,
+            isSelected: false,
+        })
+    })
+    return l
+}
+export async function delLang(id){
+    var docu = doc(db, 'prog_languages', id)
+    return await deleteDoc(docu)
+}
+export async function delFile(name){
+    var refer = ref(storage, 'images/'+name)
+    return await deleteObject(refer)
+}
+export async function insertProject(obj){
+    var col = collection(db, 'projects')
+    addDoc(col, obj)
 }

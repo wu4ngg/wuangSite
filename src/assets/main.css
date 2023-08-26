@@ -184,6 +184,31 @@ i{
     background-color: var(--background);
     padding: 20px;
 }
+.space_between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.fill_flex{
+    flex: 1;
+    width: 100%;
+}
+.center{
+    justify-content: center;
+}
+.sel{
+    background-color: var(--background);
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: Inter;
+    padding: 5px 16px;
+    appearance: none;
+}
+.max_width{
+    width: 100%;
+}
 progress {
     width: 1.5em;
     height: 1.5em;

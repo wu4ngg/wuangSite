@@ -15,26 +15,36 @@
             async getData(db){
                 var l = []
                 const col = collection(db, 'projects')
-                const q = query(col, where('isfeatured', '==', true))
+                const q = query(col, where('isFeatured', '==', true))
                 const snap = await getDocs(q)
-                const list = snap.docs.map(doc => doc.data())
-                const idList = snap.docs.map(doc => doc.id)
-                list.forEach((e, index) => {
-                    l.push(new Project(e.image, e.desc, e.name, idList[index]))
+                snap.forEach(e => {
+                    l.push({
+                        id: e.id,
+                        image: e.data().image,
+                        name: e.data().name,
+                        desc: e.data().desc,
+                        front: e.data().lang_frontend,
+                        back: e.data().lang_backend
+                    })
                 })
-                console.log(list)
+        
                 return l
         },
             async getAllData(db){
+                //new Project(e.image, e.desc, e.name, idList[index], e.lang_frontend, e.lang_backend)
                 var l = []
                 var col = collection(db, 'projects')
                 const snap = await getDocs(col)
-                const list = snap.docs.map(doc => doc.data())
-                const idList = snap.docs.map(doc => doc.id)
-                list.forEach((e, index) => {
-                    l.push(new Project(e.image, e.desc, e.name, idList[index]))
+                snap.forEach(e => {
+                    l.push({
+                        id: e.id,
+                        image: e.data().image,
+                        name: e.data().name,
+                        desc: e.data().desc,
+                        front: e.data().lang_frontend,
+                        back: e.data().lang_backend
+                    })
                 })
-                console.log(list)
                 return l
             },
             showMore(){
@@ -47,7 +57,7 @@
         },
         data(){
             return {
-                list: this.getData(db).then((e) => {this.list = e})
+                list: this.getData(db).then((e) => {this.list = e; console.log(e)})
             }
         }
     }

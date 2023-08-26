@@ -55,9 +55,10 @@ import { onAuthStateChanged } from 'firebase/auth'
             }
             },
             checkAdmin(name){
-                
-                var namearr = name.split(' ')
-                return namearr[0] == 'Admin'
+                if(name !== undefined){
+                    var namearr = name.split(' ')
+                    return namearr[0] == 'Admin'
+                }
             },
             styleLight(res){
                 localStorage.setItem("mode", "light")

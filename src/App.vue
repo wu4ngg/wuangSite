@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 import Sidebar from './components/Sidebar.vue'
 import Toast from './components/Toast.vue'
+import Dropdown from './components/Dropdown.vue'
 </script>
 <script>
   import { auth } from '../database/helper'
@@ -22,21 +23,32 @@ import Toast from './components/Toast.vue'
       console.log(auth.currentUser)
     },
     methods: {
-      checkAdmin(name){
-                
-                var namearr = name.split(' ')
-                return namearr[0] == 'Admin'
+      checkAdmin(){
+        var name = String(this.$route.name)
+        console.log(name)
+                if(name){
+                  var namearr = name.split(' ')
+
+                  return namearr[0] === "Admin"
+                }
             },
+      teleport(el){
+        var e = document.getElementById('dropdown')
+        console.log(e)
+        e.style.top = el.offsetTop + el.offsetHeight + 'px'
+        e.style.left = el.offsetLeft + 'px'
+      }
     }
   }
 </script>
 <template>
+  
   <Transition name="toast">
     <Toast :message="toastTitle" :type="toastType" v-if="toast" @toast-visible="e => toast = e"/>
   </Transition>
   <Header></Header>
   <Transition name="sidebar">
-    <Sidebar @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}" v-if="checkAdmin($route.name)" class="content_wrapper" ref="sidebar" @sidebar="e => { if(auth.currentUser && $route.name == 'Admin'){sidebarWidth = 20; console.log(e)}else{sidebarWidth = 0}}"/>
+    <Sidebar @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}" v-if="checkAdmin($route.name)" class="content_wrapper" ref="sidebar" @sidebar="e => { if(auth.currentUser && checkAdmin()){sidebarWidth = 20; console.log(e)}else{sidebarWidth = 0}}"/>
   </Transition>
     <div class="div_wrap" :style="{'padding-left': sidebarWidth + '%'}">
       <RouterView @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}"/>
@@ -79,5 +91,8 @@ import Toast from './components/Toast.vue'
     .toast-enter-from .toast, .toast-leave-to .toast{
         transform: translate(0px, -10px);
         opacity: 0;
+    }
+    .teleport{
+        position: absolute;
     }
 </style>

@@ -11,6 +11,7 @@ import Login from '../views/AdminLogin.vue'
 import AdminHome from '../views/AdminHome.vue'
 import Permitted from '../views/Permitted.vue'
 import AdminProj from '../views/AdminProject.vue'
+import PublishProjectView from '../views/PublishProjectView.vue'
 const router = createRouter({
   mode: 'history',
   history: createWebHashHistory(),
@@ -51,7 +52,7 @@ const router = createRouter({
     },
     {
       path: '/test',
-      name: 'Ignore',
+      name: 'Admin Test',
       component: Test,
     },
     {
@@ -73,6 +74,11 @@ const router = createRouter({
       name: 'Admin Project',
       component: AdminProj 
       
+    },
+    {
+      path: '/admin/proj/publish',
+      name: 'Admin Publish Project',
+      component: PublishProjectView
     }
   ]
 })

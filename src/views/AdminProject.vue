@@ -25,7 +25,7 @@
             </div>
             <div></div>
             <div class="sorter right">
-                <router-link to="/admin/proj" class="manage_btn">
+                <router-link to="/admin/proj/publish" class="manage_btn">
                     <p>Publish</p>
                     <i class="ri-add-line"></i>
                 </router-link>
