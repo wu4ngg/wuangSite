@@ -87,5 +87,28 @@
         justify-content: center;
         align-items: center;
     }
-    
+    @media only screen and (max-width: 600px) {
+        .project_wrapper{
+            padding: 7rem 0rem;
+            flex-direction: column;
+            box-sizing: border-box;
+            gap: 15px;
+        }
+        .login_wrapper{
+            width: 75%;
+        }
+        .left, .right{
+            display: flex !important;
+            justify-content: flex-start;
+        }
+        h1{
+            font-size: 2rem;
+        }
+        .huge{
+            font-size: 2rem;
+        }
+        p{
+            font-size: 1rem;
+        }
+    }
 </style>

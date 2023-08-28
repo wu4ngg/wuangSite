@@ -16,11 +16,21 @@ import Dropdown from './components/Dropdown.vue'
         toast: false,
         toastTitle: '',
         toastType: -1,
+        overrideSidebar: false,
       }
     },
-    
+    watch:{
+
+    },
     mounted(){
+      this.onResize()
       console.log(auth.currentUser)
+      this.$nextTick(() => {
+        window.addEventListener('resize', this.onResize);
+      })
+    },
+    unmounted(){
+      window.removeEventListener('resize', this.onResize); 
     },
     methods: {
       checkAdmin(){
@@ -28,10 +38,19 @@ import Dropdown from './components/Dropdown.vue'
         console.log(name)
                 if(name){
                   var namearr = name.split(' ')
-
                   return namearr[0] === "Admin"
                 }
             },
+      onResize(){
+        console.log(window.innerHeight)
+        if(window.innerWidth < 1200){
+          this.overrideSidebar = true
+          this.sidebarWidth = 0;
+        } else if(this.checkAdmin(this.$route.name)){
+          this.sidebarWidth = 20;
+          this.overrideSidebar = false
+        }
+      },
       teleport(el){
         var e = document.getElementById('dropdown')
         console.log(e)
@@ -48,7 +67,7 @@ import Dropdown from './components/Dropdown.vue'
   </Transition>
   <Header></Header>
   <Transition name="sidebar">
-    <Sidebar @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}" v-if="checkAdmin($route.name)" class="content_wrapper" ref="sidebar" @sidebar="e => { if(auth.currentUser && checkAdmin()){sidebarWidth = 20; console.log(e)}else{sidebarWidth = 0}}"/>
+    <Sidebar @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}" v-if="checkAdmin($route.name) && !overrideSidebar" class="content_wrapper" ref="sidebar" @sidebar="e => { if(auth.currentUser && checkAdmin()){sidebarWidth = 20; console.log(e)}else{sidebarWidth = 0}}"/>
   </Transition>
     <div class="div_wrap" :style="{'padding-left': sidebarWidth + '%'}">
       <RouterView @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}"/>

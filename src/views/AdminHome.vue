@@ -127,4 +127,12 @@
         flex: 1 auto;
 
     }
+    @media only screen and (max-width: 600px){
+        .left{
+            justify-content: flex-start;
+        }
+        .project_wrapper{
+            flex-direction: column;
+        }
+    }
 </style>
