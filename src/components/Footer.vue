@@ -139,6 +139,26 @@ import { getUsersWithId } from '../../database/helper';
             justify-content: flex-start;
             gap: 10px;
         }
+        .bottom_section{
+            flex-direction: column;
+        }
+        .about_section p{
+            text-align: left !important;
+        }
+        .about_section{
+            flex-direction: column;
+            gap: 5px;
+        }
+        .socials{
+            justify-content: baseline !important;
+        }
+        .links{
+            grid-template-columns: 1fr;
+        }
+        .links_section{
+            max-height: 10rem;
+            overflow: auto;
+        }
         .footer p{
             text-align: center;
         }
@@ -148,7 +168,7 @@ import { getUsersWithId } from '../../database/helper';
             gap: 10px;
             align-items: center;
             widows: 100%;
-            justify-content: center;
+            justify-content: baseline;
         }
         .email_section{
             flex-direction: column;

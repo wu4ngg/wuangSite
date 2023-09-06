@@ -9,7 +9,7 @@
         },
         created(){
             this.$router.options.routes.forEach(route => {
-                if(route.name != 'Ignore' && route.name != 'Project Detail'){
+                if(route.name != 'Ignore' && route.name && !this.checkAdmin(route.name) && route.name != "Project Detail"){
                     this.items.push({
                         name: route.name,
                         path: route.path
@@ -20,7 +20,13 @@
         methods:{
             closeMenu(){
                 this.$emit('isMenu', false)
-            }
+            },
+            checkAdmin(name){
+                if(name !== undefined){
+                    var namearr = name.split(' ')
+                    return namearr[0] == 'Admin'
+                }
+            },
         }
         
     }
