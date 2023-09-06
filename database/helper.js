@@ -56,11 +56,22 @@ export async function getSingleProject(id){
 }
 export async function convertInfo(id){
     const e = await getSingleProject(id)
+    var lang_frontend = [];
+    for(var l of e.lang_frontend){
+        lang_frontend.push(l.name)
+    }
+    var lang_backend = [];
+    for(var l1 in e.lang_backend){
+        lang_backend.push(l.name)
+    }
+    lang_backend = lang_backend.join(", ")
+    lang_frontend = lang_frontend.join(", ")
     let list = []
-    list.push(new Desc('Front-end Technologies: '+e.frontend, "ri-code-s-slash-line"))
-    list.push(new Desc('Back-end Technologies: '+e.backend, "ri-code-s-slash-line"))
+    list.push(new Desc('Front-end Technologies: '+lang_frontend, "ri-code-s-slash-line"))
+    list.push(new Desc('Back-end Technologies: '+lang_backend, "ri-code-s-slash-line"))
     list.push(new Desc('Goal: ' + e.goal, "ri-focus-3-line"))
     list.push(new Desc('Status: ' + e.status, getStatusIcon(e.status)))
+    console.log(list)
     return list
 }
 function getStatusIcon(status){
@@ -79,9 +90,8 @@ function getStatusIcon(status){
 export async function getCredits(id){
     let list
     let res = []
-    const col = collection(db, 'projects', id, 'credits')
-    const snap = await getDocs(col)
-    list = snap.docs.map(e => e.data())
+    const p = await getSingleProject(id)
+    list = p.credits
     console.log(list)  
     for await (const el of list){
         let e = await getUser(el.id)
