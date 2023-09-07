@@ -61,8 +61,8 @@ export async function convertInfo(id){
         lang_frontend.push(l.name)
     }
     var lang_backend = [];
-    for(var l1 in e.lang_backend){
-        lang_backend.push(l.name)
+    for(var l1 of e.lang_backend){
+        lang_backend.push(l1.name)
     }
     lang_backend = lang_backend.join(", ")
     lang_frontend = lang_frontend.join(", ")
