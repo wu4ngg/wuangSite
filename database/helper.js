@@ -48,6 +48,22 @@ export async function getFeaturedProjects(){
     console.log(list)
     return l
 }
+export async function getAllData(){
+    var l = []
+                var col = collection(db, 'projects')
+                const snap = await getDocs(col)
+                snap.forEach(e => {
+                    l.push({
+                        id: e.id,
+                        image: e.data().image,
+                        name: e.data().name,
+                        desc: e.data().desc,
+                        front: e.data().lang_frontend,
+                        back: e.data().lang_backend
+                    })
+                })
+                return l
+}
 export async function getSingleProject(id){
     const col = collection(db, 'projects')
     const data = await getDoc(doc(db, 'projects', id))
