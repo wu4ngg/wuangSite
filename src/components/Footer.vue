@@ -18,7 +18,7 @@ import { getUsersWithId } from '../../database/helper';
         <div class="about_section">
             <div>
                 <img src="/logo.svg"/>
-                <p>Just a Website created by a college student</p>
+                <p>Yes, I know it's a typo, I did it intentionally</p>
                
             </div>
             <div class="socials">
@@ -45,6 +45,7 @@ import { getUsersWithId } from '../../database/helper';
                 <RouterLink to="/about">About</RouterLink>
                 <RouterLink to="/credits">Credits</RouterLink>
                 <RouterLink to="/project">Projects</RouterLink>
+                <RouterLink to="/admin">🤫</RouterLink>
             </div>
         </div>
         <div class="links_section">

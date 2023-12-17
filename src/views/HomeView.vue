@@ -25,6 +25,8 @@
                     return "ri-global-line";
                 case "goal":
                     return "ri-flag-2-line";
+                case "lang":
+                    return "ri-code-line";
                 default:
                     return "ri-thumb-up-line";
             }
@@ -37,6 +39,8 @@
                     return "IELTS Band " + value;
                 case "goal":
                     return "Goal: " + value;
+                case "lang":
+                    return "Programming Language: "
                 default:
                     return "Interests: " + value;
             }
@@ -60,7 +64,8 @@
         data(){
             return {
                 list: d,
-                proj: getFeaturedProjects().then((e) => {this.proj = e})
+                proj: getFeaturedProjects().then((e) => {this.proj = e}),
+                currentDate: new Date()
             }
         }
     }
@@ -73,10 +78,12 @@
     }
 </style>
 <template>
+        <img v-if="!(currentDate.getMonth() + 1 == 11 || currentDate.getMonth() + 1 == 12)" class="vector_home" src="/thingy.svg"/>
+        <img v-if="currentDate.getMonth() + 1 == 11 || currentDate.getMonth() + 1 == 12" class="vector_home img_event" src="/christmas-tree.png"/>
         <div class="body_wrapper">
             <div class="body_top">
                 <div>
-                    <h1 class="light">Welcome to my page</h1>
+                    <h1 class="light">{{ currentDate.getMonth() + 1 == 11 || currentDate.getMonth() + 1 == 12 ? 'Merry Christmas!' : currentDate.getDate() == 1 && currentDate.getMonth() == 0 ? 'Happy New Year!' : 'Welcome to my site!' }}</h1>
                     <h1>My name is <span style="color: var(--primary)">Quang</span></h1>
                     <div class="desc_user">
                         <p>Just a university student who likes to code.</p>
@@ -87,7 +94,13 @@
                     </div>
                 </div>
                 <div class="more_info">
-                    <MoreInfo :list=list title="About me"></MoreInfo>
+                    <div class="info_w">
+                        <div>
+                            <img class="picture_wrapper" src="/pictore.jpg">
+                            <p>It's me!</p>
+                        </div>
+                        <MoreInfo :list=list title="About me"></MoreInfo>
+                    </div>
                     <MoreInfo mode="project" :list=proj title="Projects" subtitle="Here are some of my best projects. Click on one to go to its project page."></MoreInfo>
                 </div>
             </div>

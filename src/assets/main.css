@@ -209,19 +209,46 @@ i{
 .max_width{
     width: 100%;
 }
-
+.picture_wrapper{
+    height: 175px;
+    border-radius: 16px;
+}
+.info_w{
+    display: flex;
+    gap: 16px
+}
 progress {
     width: 1.5em;
     height: 1.5em;
     background: url("data:image/svg+xml,%3csvg viewBox='-5 -5 10 10' xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3esvg%7banimation:r 1.4s linear infinite%7d%40keyframes r%7bto%7btransform:rotate(270deg)%7d%7dcircle%7banimation:d 1.4s ease-in-out infinite%7d%40keyframes d%7b50%25%7btransform:rotate(135deg)%3bstroke-dashoffset:8%7dto%7btransform:rotate(450deg)%7dfrom%2cto%7bstroke-dashoffset:28%7d%7d%3c/style%3e%3ccircle fill='none' stroke-dasharray='30' stroke-dashoffset='8' stroke='%234285f4' r='4'/%3e%3c/svg%3e"); 
   }
-  
+.vector_home{
+    position: absolute;
+    top: 0px;
+    right: 0;
+    height: 250px;
+    z-index: -1;
+}
+.img_event{
+    top: 100px
+}
   /* Remove default browser styles */
   progress { border: 0 }
   progress::-moz-progress-bar { background: none }
   progress::-webkit-progress-bar { display: none }
   progress::-ms-fill { animation-name: none }
+@media only screen and (max-width: 1200px) {
+    .vector_home{
+        display: none;
+    }
+}
 @media only screen and (max-width: 600px) {
+    .info_w{
+        flex-direction: column;
+    }
+    .vector_home{
+        display: none;
+    }
     h1{
         font-size: 1.75rem;
     }
