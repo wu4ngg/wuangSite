@@ -251,3 +251,7 @@ export async function insertProject(obj){
     var col = collection(db, 'projects')
     addDoc(col, obj)
 }
+export async function deleteProject(proj){
+    var col = collection(db, 'projects')
+    await deleteDoc(doc(db, 'projects', proj.id))
+}

@@ -35,6 +35,7 @@
         height: 100%;
         background: none;
         padding-bottom: 16px;
+        pointer-events: none;
     }
     .toast{
         display: flex;

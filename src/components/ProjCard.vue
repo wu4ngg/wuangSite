@@ -37,7 +37,7 @@ import { RouterLink } from 'vue-router';
 }
 </script>
 <template>
-    <div :to="'/projects/'+item.id" class="info_wrapper">
+    <div :to="'/projects/'+item.id" class="info_wrap">
         <div class="proj_title">
             <img v-if="item.image != ''" class="proj_img" :src="item.image"/>
             <h3>{{ item.name }}</h3>
@@ -93,7 +93,17 @@ import { RouterLink } from 'vue-router';
     .manage_btn:hover{
         box-shadow: 0px 0px 0px 0px var(--primary);
     }
-    .info_wrapper{
+    .info_wrap{
+        box-sizing: border-box;
+        overflow: auto;
+        height: fit-content;
+        max-height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 25px;
+        background-color: var(--card);
+        border-radius: 15px;
         text-decoration: none;
     }
     .lang_wrapper{

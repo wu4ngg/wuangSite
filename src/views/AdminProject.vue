@@ -1,5 +1,6 @@
 <script>
 import { getAllData } from '../../database/helper';
+import {deleteProject} from '../../database/helper'
 import ProjCard from '../components/ProjCard.vue'
 import ConfirmDialog from '../components/ConfirmDialog.vue'
     export default{
@@ -26,12 +27,26 @@ import ConfirmDialog from '../components/ConfirmDialog.vue'
             deleteConfirm(d){
                 this.isShowDialog = true;
                 this.data = d
+            },
+            beginDelete(d){
+                const index = this.proj.indexOf(d)
+                this.isShowDialog = false
+                const tmp = this.proj[index]
+                this.proj[index] = {
+                    tmp,
+                    isBeingDeleted: true
+                }
+                deleteProject(d).then(() => {
+                    this.proj.splice(index, 1)
+                }).catch(e => {
+                    alert(e)
+                })
             }
         }
     }
 </script>
 <template>
-    <ConfirmDialog @cancel="() => {isShowDialog = false}" :data="data" :visible="isShowDialog"/>
+    <ConfirmDialog @confirm="(e) => {beginDelete(e)}" @cancel="() => {isShowDialog = false}" :data="data" :visible="isShowDialog"/>
     <div class="project_wrapper">
         <div class="top_wrapper">
             <div>
@@ -58,12 +73,27 @@ import ConfirmDialog from '../components/ConfirmDialog.vue'
                 </router-link>
             </div>
         </div>
-        <div class="projects">
-            <ProjCard @delete="(e) => {deleteConfirm(e)}" :item="item" v-for="item in proj"/>
-        </div>
+     
+            <TransitionGroup name="grid" tag="div" class="projects">
+                <ProjCard @delete="(e) => {deleteConfirm(e)}" :item="item" :key="item.id" :style="`opacity: ${item.isBeingDeleted ? 0.7 : 1};`" v-for="item in proj"/>
+            </TransitionGroup>
     </div>
 </template>
 <style scoped>
+    .grid-move{
+        transition: all 0.5s cubic-bezier(0.74, 0.15, 0.24, 0.97);
+    }
+    .grid-enter-active, .grid-leave-active{
+        transition: all 0.2s cubic-bezier(0.74, 0.15, 0.24, 0.97);
+    }
+    .grid-leave-active{
+        position: absolute;
+    }
+    .grid-enter-from, .grid-leave-to{
+        transform: scale(80%);
+        filter: blur(20px);
+        opacity: 0;
+    }
     *{
         font-family: Inter;
     }
@@ -174,5 +204,22 @@ import ConfirmDialog from '../components/ConfirmDialog.vue'
     }
     .right{
         justify-content: flex-end;
+    }
+    @media only screen and (max-width: 600px) {
+        .projects{
+            grid-template-columns: 1fr;
+        }
+        .content{
+            display: flex;
+            flex-direction: column;
+        }
+        .sorter{
+            flex-direction: column;
+            justify-content: baseline;
+            align-items: baseline;
+        }
+        .right{
+            display: flex !important;
+        }
     }
 </style>

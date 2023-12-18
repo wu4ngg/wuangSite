@@ -364,7 +364,7 @@ import { getUsersWithId, getLang, uploadFile, insertProject } from '../../databa
                                 <img :src="temp[index].img" height="32"/>
                                 <p>{{ temp[index].name }}</p>
                             </div>
-                            <select disabled class="sel" v-model="temp[index].type">
+                            <select disabled class="sel pc" v-model="temp[index].type">
                                 <option value="lang">Language / Framework</option>
                                 <option value="db">Database / Back-end</option>
                             </select>
@@ -579,6 +579,7 @@ import { getUsersWithId, getLang, uploadFile, insertProject } from '../../databa
         gap: 15px;
         align-items: center;
         flex: 1;
+        flex-wrap: wrap;
     }
     .image_picker{
         cursor: pointer;
@@ -601,6 +602,7 @@ import { getUsersWithId, getLang, uploadFile, insertProject } from '../../databa
     .brief_info{
         display: flex;
         gap: 15px;
+        flex-wrap: wrap;
         align-items: center;
     }
     .dropdown{
@@ -641,7 +643,25 @@ import { getUsersWithId, getLang, uploadFile, insertProject } from '../../databa
     .list-leave-active{
         transition: 0.3s;
     }
-   
+    @media only screen and (max-width: 600px) {
+        .split_section{
+            flex-direction: column;
+        }
+        .split_section hr{
+            width: 100%;
+        }
+        .title_part{
+            flex-direction: column;
+            gap: 20px
+        }
+        .huge_edt{
+            box-sizing: border-box;
+            font-weight: normal;
+        }
+        .pc{
+            display: none;
+        }
+    }
 </style>
 <style>
     .huge_edt{
@@ -684,5 +704,8 @@ import { getUsersWithId, getLang, uploadFile, insertProject } from '../../databa
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+  @media only screen and (max-width: 600px) {
+
+  }
 }
 </style>

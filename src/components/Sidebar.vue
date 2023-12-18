@@ -95,7 +95,7 @@
        
     </div>
 </template>
-<style scoped>
+<style>
     *{
         font-family: Inter;
     }

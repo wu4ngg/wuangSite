@@ -115,7 +115,7 @@ import { onAuthStateChanged } from 'firebase/auth'
         </div>
     </div>
     <Transition name="menu">
-        <Menu v-if="isMenu" @is-menu="(n) => isMenu = n"></Menu>
+        <Menu @toast="e => this.$emit('toast', e)" v-if="isMenu" @is-menu="(n) => isMenu = n"></Menu>
     </Transition>
 </template>
 <style>

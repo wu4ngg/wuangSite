@@ -65,7 +65,7 @@ import Dropdown from './components/Dropdown.vue'
   <Transition name="toast">
     <Toast :message="toastTitle" :type="toastType" v-if="toast" @toast-visible="e => toast = e"/>
   </Transition>
-  <Header></Header>
+  <Header @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}"></Header>
   <Transition name="sidebar">
     <Sidebar @toast="e => {toast = true; toastTitle = e.message; toastType = e.type}" v-if="checkAdmin($route.name) && !overrideSidebar" class="content_wrapper" ref="sidebar" @sidebar="e => { if(auth.currentUser && checkAdmin()){sidebarWidth = 20; console.log(e)}else{sidebarWidth = 0}}"/>
   </Transition>
