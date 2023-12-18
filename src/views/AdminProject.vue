@@ -1,14 +1,41 @@
 <script>
+import { getAllData } from '../../database/helper';
+import ProjCard from '../components/ProjCard.vue'
+import ConfirmDialog from '../components/ConfirmDialog.vue'
     export default{
-
+        data(){
+            return{
+                projCount: 0,
+                proj: [],
+                data: undefined,
+                isShowDialog: false
+            }
+        },
+        mounted(){
+            getAllData().then(e => {
+                console.log(e)
+                this.projCount = e.length
+                this.proj = e
+            })
+        },
+        components: {
+            ProjCard,
+            ConfirmDialog
+        },
+        methods: {
+            deleteConfirm(d){
+                this.isShowDialog = true;
+                this.data = d
+            }
+        }
     }
 </script>
 <template>
+    <ConfirmDialog @cancel="() => {isShowDialog = false}" :data="data" :visible="isShowDialog"/>
     <div class="project_wrapper">
         <div class="top_wrapper">
             <div>
-                <h1>0 Projects</h1>
-                <p><b>0 posted today</b></p>
+                <h1>{{ projCount }} Projects</h1>
             </div>
             <div>[graph goes here]</div>
         </div>
@@ -31,11 +58,19 @@
                 </router-link>
             </div>
         </div>
+        <div class="projects">
+            <ProjCard @delete="(e) => {deleteConfirm(e)}" :item="item" v-for="item in proj"/>
+        </div>
     </div>
 </template>
 <style scoped>
     *{
         font-family: Inter;
+    }
+    .projects{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px
     }
     .manage_btn{
         transition: transform 0.2s, box-shadow 0.2s;

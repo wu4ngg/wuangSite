@@ -5,6 +5,7 @@
     --text: #000;
     --foreground: #A2A2A2;
     --card: #E8E8E8;
+    --card-blur: #e8e8e89f;
     --on-color: #000;
     --on-bright-color: #fff;
 }
@@ -17,4 +18,5 @@
     --text: #FFF;
     --foreground: #A2A2A2;
     --card: #333333;
+    --card-blur: #3333339f;
 }

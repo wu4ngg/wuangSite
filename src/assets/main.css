@@ -14,6 +14,7 @@ body{
     height: 100%;
 }
 *{
+    font-family: 'Inter', sans-serif;
     transition: color 0.2s, background-color 0.2s;
     color: var(--text);
     margin: 0px;

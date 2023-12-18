@@ -53,14 +53,7 @@ export async function getAllData(){
                 var col = collection(db, 'projects')
                 const snap = await getDocs(col)
                 snap.forEach(e => {
-                    l.push({
-                        id: e.id,
-                        image: e.data().image,
-                        name: e.data().name,
-                        desc: e.data().desc,
-                        front: e.data().lang_frontend,
-                        back: e.data().lang_backend
-                    })
+                    l.push({...e.data(), id: e.id})
                 })
                 return l
 }
