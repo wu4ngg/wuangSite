@@ -238,12 +238,26 @@ progress {
   progress::-moz-progress-bar { background: none }
   progress::-webkit-progress-bar { display: none }
   progress::-ms-fill { animation-name: none }
+  @media only screen and (max-width: 1350px) {
+    .info_w{
+        flex-direction: column;
+    }
+    .darkmode_text{
+        display: none;
+    }
+}
 @media only screen and (max-width: 1200px) {
     .vector_home{
         display: none;
     }
+    .info_w{
+        flex-direction: column;
+    }
+    .more_info{
+        flex-direction: column;
+    }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 720px) {
     .info_w{
         flex-direction: column;
     }
@@ -303,6 +317,6 @@ progress {
         width: auto !important;
     }
     .footer_wrapper{
-        padding: 25px;
+        padding: 0px;
     }
 }

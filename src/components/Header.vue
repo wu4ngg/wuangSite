@@ -101,7 +101,7 @@ import { onAuthStateChanged } from 'firebase/auth'
             <button class="generic_button mobile" @click="showMenu()" >
                 <i class="ri-menu-line"></i>
             </button>
-            <h3 class="desktop">{{ this.$route.path }}</h3>
+            
         </div>
         <div class="right">
             <router-link  v-for="route in items" :to="route.path" class="link_entry">
@@ -178,4 +178,9 @@ import { onAuthStateChanged } from 'firebase/auth'
         display: flex;
         gap: 25px;
     }
+    @media only screen and (max-width: 820px) {
+    #darkmode_text{
+        display: none;
+    }
+}
 </style>

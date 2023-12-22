@@ -42,10 +42,14 @@ import { getUsersWithId } from '../../database/helper';
             </div>
             <div class="links_section" id="three">
                 <h3>Links</h3>
-                <RouterLink to="/about">About</RouterLink>
-                <RouterLink to="/credits">Credits</RouterLink>
-                <RouterLink to="/project">Projects</RouterLink>
-                <RouterLink to="/admin">🤫</RouterLink>
+                <div class="links" style="grid-template-columns: 1fr 1fr;">
+                    <RouterLink to="/about">About</RouterLink>
+                    <RouterLink to="/credits">Credits</RouterLink>
+                    <RouterLink to="/project">Projects</RouterLink>
+                    <RouterLink to="/blog">Blog</RouterLink>
+                    <RouterLink to="/team">Team</RouterLink>
+                    <RouterLink to="/admin">🤫</RouterLink>
+                </div>
             </div>
         </div>
         <div class="links_section">
@@ -134,7 +138,7 @@ import { getUsersWithId } from '../../database/helper';
         display: flex;
         gap: 15px;
     }
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 1000px) {
         .footer{
             flex-direction: column;
             justify-content: flex-start;

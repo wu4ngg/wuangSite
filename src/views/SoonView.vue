@@ -1,3 +1,6 @@
+<script setup>
+    import Footer from '../components/Footer.vue';
+</script>
 <template>
     <div class="soon_wrapper">
         <i class="ri-code-line"></i>
@@ -7,7 +10,9 @@
             <p>Return <a href="/">home</a></p>
         </div>
     </div>
-    
+    <div class="footer_wrapper">
+        <Footer></Footer>
+    </div>
 </template>
 <style>
     .soon_wrapper{

@@ -137,9 +137,7 @@ export async function getUsersWithId(){
     snap.forEach((e) => {
         res.push({
             id: e.id,
-            fullname: e.data().fullname,
-            github: e.data().github,
-            nickname: e.data().nickname
+            ...e.data()
         })
     })
     return res

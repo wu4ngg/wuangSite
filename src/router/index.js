@@ -12,6 +12,7 @@ import AdminHome from '../views/AdminHome.vue'
 import Permitted from '../views/Permitted.vue'
 import AdminProj from '../views/AdminProject.vue'
 import PublishProjectView from '../views/PublishProjectView.vue'
+import TeamView from '../views/TeamView.vue'
 const router = createRouter({
   mode: 'history',
   history: createWebHashHistory(),
@@ -30,6 +31,10 @@ const router = createRouter({
       path: '/blog',
       name: 'Blog',
       component: Soon
+    },
+    {
+      path: '/team',
+      component: TeamView
     },
     {
       path: '/projects/:id',
