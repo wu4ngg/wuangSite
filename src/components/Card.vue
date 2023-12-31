@@ -108,7 +108,8 @@
 <style>
     .proj_img{
         height: 35px;
-        width: max-content;
+        width: auto;
+        align-self: baseline;
     }
     .proj_content{
         text-decoration: none;

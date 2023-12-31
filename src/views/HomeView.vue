@@ -65,7 +65,81 @@
             return {
                 list: d,
                 proj: getFeaturedProjects().then((e) => {this.proj = e}),
-                currentDate: new Date()
+                currentDate: new Date(),
+                countdownString: "",
+            }
+        },
+        mounted(){
+            this.countdownTimer()
+        },
+        methods: {
+            countdownTimer(){
+                if(this.currentDate.getDate() == 31 && this.currentDate.getMonth() == 11)
+                    setInterval(() => {
+                        const date = new Date()
+                        const newYearDate = new Date(2024, 0, 1, 0,0,0,0)
+                        const diff = newYearDate - date
+                        var ms = Math.floor((diff * 1000) / 100)
+                        var seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+                        var minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
+                        var hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+                        if(diff == 0){
+                            this.countdownString = `Happy new year! 🧧`
+                            return
+                        }
+                        var clock = ''
+                        switch(hours){
+                            case '15':
+                                clock = '🕘'
+                                break
+                            case '14':
+                                clock = '🕙'
+                                break
+                            case '13':
+                                clock = '🕚'
+                                break
+                            case '12':
+                                clock = '🕛'
+                                break
+                            case '11':
+                                clock = '🕐'
+                                break
+                            case '10':
+                                clock = '🕑'
+                                break
+                            case '09':
+                                clock = '🕒'
+                                break
+                            case '08':
+                                clock = '🕓'
+                                break
+                            case '07':
+                                clock = '🕔'
+                                break
+                            case '06':
+                                clock = '🕕'
+                                break
+                            case '05':
+                                clock = '🕖'
+                                break
+                            case '04':
+                                clock = '🕗'
+                                break
+                            case '03':
+                                clock = '🕘'
+                                break
+                            case '02':
+                                clock = '🕙'
+                                break
+                            case '01':
+                                clock = '🕚'
+                                break
+                            default:
+                                clock = '🕛'
+                                break
+                        }
+                        this.countdownString = `${hours}:${minutes}:${seconds} Until New Year ${clock}🧧`
+                    }, 1000)
             }
         }
     }
@@ -83,7 +157,7 @@
         <div class="body_wrapper">
             <div class="body_top">
                 <div>
-                    <h1 class="light">{{ currentDate.getMonth() + 1 == 11 || currentDate.getMonth() + 1 == 12 ? 'Merry Christmas!' : currentDate.getDate() == 1 && currentDate.getMonth() == 0 ? 'Happy New Year!' : 'Welcome to my site!' }}</h1>
+                    <h1 class="light">{{ currentDate.getMonth() + 1 == 11 || (currentDate.getMonth() + 1 == 12 && currentDate.getDate() >= 24 && currentDate.getDate() <= 25) ? 'Merry Christmas!' : (currentDate.getDate() == 1 && currentDate.getMonth() == 0) || (currentDate.getMonth() == 11 && currentDate.getDate() >= 25) ?  countdownString : 'Welcome to my site!' }}</h1>
                     <h1>My name is <span style="color: var(--primary)">Quang</span></h1>
                     <div class="desc_user">
                         <p>Just a university student who likes to code.</p>
