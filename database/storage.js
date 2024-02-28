@@ -3,7 +3,7 @@ import { firebaseApp } from "./helper";
 import { getStorage } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 const app = initializeApp({
-    apiKey: "AIzaSyAhhsiDOMxInV6W4UzW9L37095VwrNtQxg",
+    apiKey: "",
 
     authDomain: "quangsite-5361e.firebaseapp.com",
 
@@ -13,7 +13,7 @@ const app = initializeApp({
 
     messagingSenderId: "519154210929",
 
-    appId: "1:519154210929:web:88a26e40a37bc83ec123d0",
+    appId: "",
 
-    measurementId: "G-G35ZZHWQE8"
+    measurementId: ""
 })
