@@ -4,6 +4,8 @@
 This is my hobby project written in Vue, it's just my portfolio and nothing else.\
 🌏 VISIT: https://fowardslash.vercel.app
 # How to use?
+All firebase API stuffs are redacted out just for my wallet not to go up in flames.\
+Re-add your firebase stuff before running the project.\
 First, clone the repo, then open the terminal and type:
 ```
 cd fowardslashVue
